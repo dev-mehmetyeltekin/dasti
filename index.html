@@ -1,0 +1,1668 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <title>Dasti Cafe & Fast Food - QR Menü</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@600;700;800;900&family=Poppins:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --navy-dark: #0b1120;
+            --navy-main: #131c33;
+            --navy-light: #1e2946;
+            --brand-orange: #ff5e00;
+            --brand-amber: #ffb703;
+            --brand-red: #d90429;
+            --bg-cream: #f8f6f2;
+            --card-bg: #ffffff;
+            --text-dark: #1a1f2c;
+            --text-muted: #64748b;
+            --border-color: #e2e8f0;
+            --shadow-sm: 0 2px 8px rgba(11, 17, 32, 0.06);
+            --shadow-md: 0 6px 20px rgba(11, 17, 32, 0.12);
+            --radius-md: 14px;
+            --radius-lg: 20px;
+        }
+
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+            -webkit-tap-highlight-color: transparent;
+        }
+
+        html {
+            scroll-behavior: smooth;
+        }
+
+        body {
+            font-family: 'Poppins', sans-serif;
+            background-color: var(--bg-cream);
+            color: var(--text-dark);
+            line-height: 1.5;
+            overflow-x: hidden;
+            padding-bottom: 60px;
+        }
+
+        /* ÜST SABİT BAR (HEADER) */
+        .top-navbar {
+            position: sticky;
+            top: 0;
+            z-index: 100;
+            background: linear-gradient(135deg, var(--navy-dark) 0%, var(--navy-main) 100%);
+            color: #fff;
+            height: 64px;
+            padding: 0 14px;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.25);
+            border-bottom: 2px solid var(--brand-orange);
+        }
+
+        .hamburger-btn {
+            background: rgba(255, 255, 255, 0.08);
+            border: 1px solid rgba(255, 183, 3, 0.35);
+            color: #fff;
+            height: 42px;
+            padding: 0 12px;
+            border-radius: 10px;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            font-family: 'Montserrat', sans-serif;
+            font-weight: 700;
+            font-size: 0.82rem;
+            cursor: pointer;
+            transition: all 0.2s ease;
+        }
+
+        .hamburger-btn:active {
+            transform: scale(0.95);
+            background: var(--brand-orange);
+        }
+
+        .hamburger-icon {
+            display: flex;
+            flex-direction: column;
+            gap: 4px;
+            width: 18px;
+        }
+
+        .hamburger-icon span {
+            display: block;
+            height: 2.5px;
+            width: 100%;
+            background: var(--brand-amber);
+            border-radius: 2px;
+        }
+
+        .nav-brand {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            text-decoration: none;
+            color: #fff;
+        }
+
+        .nav-brand img {
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            object-fit: cover;
+            border: 2px solid var(--brand-amber);
+            background: #fff;
+        }
+
+        .nav-brand-text {
+            font-family: 'Montserrat', sans-serif;
+            font-weight: 900;
+            font-size: 1.05rem;
+            letter-spacing: 0.5px;
+            background: linear-gradient(to right, #ffffff, var(--brand-amber));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+
+        .admin-trigger-btn {
+            background: rgba(255, 255, 255, 0.08);
+            border: 1px solid rgba(255, 255, 255, 0.18);
+            color: var(--brand-amber);
+            width: 40px;
+            height: 40px;
+            border-radius: 10px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.1rem;
+            cursor: pointer;
+        }
+
+        /* HERO LOGO ALANI */
+        .hero-banner {
+            background: radial-gradient(circle at center, var(--navy-light) 0%, var(--navy-dark) 100%);
+            padding: 22px 16px 20px;
+            text-align: center;
+            color: #fff;
+            position: relative;
+            border-bottom: 4px solid var(--brand-red);
+        }
+
+        .hero-logo-wrap {
+            width: 118px;
+            height: 118px;
+            margin: 0 auto 10px;
+            border-radius: 50%;
+            padding: 4px;
+            background: linear-gradient(135deg, var(--brand-orange), var(--brand-amber), var(--brand-red));
+            box-shadow: 0 8px 25px rgba(255, 94, 0, 0.4);
+        }
+
+        .hero-logo-wrap img {
+            width: 100%;
+            height: 100%;
+            border-radius: 50%;
+            object-fit: cover;
+            background: #fff;
+            display: block;
+        }
+
+        .hero-title {
+            font-family: 'Montserrat', sans-serif;
+            font-size: 1.55rem;
+            font-weight: 900;
+            letter-spacing: 0.8px;
+            color: var(--brand-amber);
+            text-transform: uppercase;
+            text-shadow: 0 2px 10px rgba(0, 0, 0, 0.5);
+        }
+
+        .hero-subtitle {
+            display: inline-block;
+            background: var(--brand-red);
+            color: #fff;
+            font-family: 'Montserrat', sans-serif;
+            font-weight: 700;
+            font-size: 0.72rem;
+            padding: 3px 14px;
+            border-radius: 20px;
+            letter-spacing: 1.5px;
+            margin-top: 4px;
+            margin-bottom: 14px;
+            text-transform: uppercase;
+        }
+
+        .search-box {
+            max-width: 460px;
+            margin: 0 auto;
+            position: relative;
+        }
+
+        .search-box input {
+            width: 100%;
+            padding: 11px 16px 11px 40px;
+            border-radius: 12px;
+            border: 1px solid rgba(255, 183, 3, 0.35);
+            background: rgba(255, 255, 255, 0.95);
+            font-family: 'Poppins', sans-serif;
+            font-size: 0.9rem;
+            color: var(--text-dark);
+            outline: none;
+        }
+
+        .search-box input:focus {
+            border-color: var(--brand-orange);
+            box-shadow: 0 0 0 3px rgba(255, 94, 0, 0.25);
+        }
+
+        .search-icon {
+            position: absolute;
+            left: 13px;
+            top: 50%;
+            transform: translateY(-50%);
+            color: var(--brand-orange);
+            font-size: 0.95rem;
+        }
+
+        /* YATAY HIZLI KATEGORİ ŞERİDİ */
+        .category-strip-wrap {
+            position: sticky;
+            top: 64px;
+            z-index: 90;
+            background: #fff;
+            border-bottom: 1px solid var(--border-color);
+            box-shadow: 0 2px 8px rgba(0, 0, 0, 0.04);
+        }
+
+        .category-strip {
+            display: flex;
+            gap: 8px;
+            overflow-x: auto;
+            padding: 10px 14px;
+            scrollbar-width: none;
+            -ms-overflow-style: none;
+            max-width: 900px;
+            margin: 0 auto;
+        }
+
+        .category-strip::-webkit-scrollbar {
+            display: none;
+        }
+
+        .cat-pill {
+            flex-shrink: 0;
+            padding: 7px 15px;
+            border-radius: 999px;
+            background: #f1f5f9;
+            color: var(--text-dark);
+            font-weight: 600;
+            font-size: 0.83rem;
+            border: 1px solid transparent;
+            cursor: pointer;
+            transition: all 0.2s ease;
+            white-space: nowrap;
+        }
+
+        .cat-pill.active {
+            background: linear-gradient(135deg, var(--brand-orange), var(--brand-red));
+            color: #fff;
+            box-shadow: 0 3px 10px rgba(255, 94, 0, 0.3);
+        }
+
+        /* SOL HAMBURGER ÇEKMECESİ (DRAWER) */
+        .drawer-backdrop {
+            position: fixed;
+            inset: 0;
+            background: rgba(11, 17, 32, 0.65);
+            backdrop-filter: blur(3px);
+            z-index: 200;
+            opacity: 0;
+            pointer-events: none;
+            transition: opacity 0.25s ease;
+        }
+
+        .drawer-backdrop.open {
+            opacity: 1;
+            pointer-events: auto;
+        }
+
+        .side-drawer {
+            position: fixed;
+            top: 0;
+            left: 0;
+            bottom: 0;
+            width: 290px;
+            max-width: 84vw;
+            background: #fff;
+            z-index: 210;
+            transform: translateX(-100%);
+            transition: transform 0.28s cubic-bezier(0.4, 0, 0.2, 1);
+            display: flex;
+            flex-direction: column;
+            box-shadow: 6px 0 25px rgba(0, 0, 0, 0.25);
+        }
+
+        .side-drawer.open {
+            transform: translateX(0);
+        }
+
+        .drawer-header {
+            background: linear-gradient(135deg, var(--navy-dark), var(--navy-main));
+            color: #fff;
+            padding: 18px 16px;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            border-bottom: 3px solid var(--brand-orange);
+        }
+
+        .drawer-brand {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .drawer-brand img {
+            width: 44px;
+            height: 44px;
+            border-radius: 50%;
+            border: 2px solid var(--brand-amber);
+            object-fit: cover;
+            background: #fff;
+        }
+
+        .drawer-brand-title {
+            font-family: 'Montserrat', sans-serif;
+            font-weight: 800;
+            font-size: 1rem;
+            color: var(--brand-amber);
+        }
+
+        .drawer-brand-sub {
+            font-size: 0.72rem;
+            color: #cbd5e1;
+        }
+
+        .drawer-close {
+            background: rgba(255, 255, 255, 0.1);
+            border: none;
+            color: #fff;
+            width: 34px;
+            height: 34px;
+            border-radius: 8px;
+            font-size: 1.1rem;
+            cursor: pointer;
+        }
+
+        .drawer-section-label {
+            padding: 14px 16px 6px;
+            font-size: 0.72rem;
+            font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            color: var(--text-muted);
+        }
+
+        .drawer-cat-list {
+            flex: 1;
+            overflow-y: auto;
+            padding: 6px 10px 16px;
+            list-style: none;
+        }
+
+        .drawer-cat-item {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            padding: 12px 12px;
+            margin-bottom: 4px;
+            border-radius: 10px;
+            font-weight: 600;
+            font-size: 0.92rem;
+            color: var(--text-dark);
+            cursor: pointer;
+            transition: background 0.15s;
+        }
+
+        .drawer-cat-item:active,
+        .drawer-cat-item:hover {
+            background: #fff3eb;
+            color: var(--brand-orange);
+        }
+
+        .drawer-cat-count {
+            background: var(--navy-main);
+            color: var(--brand-amber);
+            font-size: 0.75rem;
+            font-weight: 700;
+            padding: 2px 9px;
+            border-radius: 99px;
+        }
+
+        .drawer-footer {
+            padding: 12px 16px;
+            border-top: 1px solid var(--border-color);
+            background: #f8fafc;
+        }
+
+        .drawer-admin-btn {
+            width: 100%;
+            padding: 11px;
+            border-radius: 10px;
+            border: 1px solid var(--border-color);
+            background: #fff;
+            color: var(--navy-main);
+            font-family: 'Poppins', sans-serif;
+            font-weight: 600;
+            font-size: 0.85rem;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 8px;
+        }
+
+        /* ANA MENÜ LİSTESİ */
+        .menu-container {
+            max-width: 820px;
+            margin: 0 auto;
+            padding: 16px 14px;
+        }
+
+        .category-block {
+            margin-bottom: 28px;
+            scroll-margin-top: 124px;
+        }
+
+        .category-header {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            margin-bottom: 12px;
+            padding-bottom: 8px;
+            border-bottom: 2px solid var(--brand-orange);
+        }
+
+        .category-title {
+            font-family: 'Montserrat', sans-serif;
+            font-size: 1.2rem;
+            font-weight: 800;
+            color: var(--navy-main);
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .category-title::before {
+            content: "";
+            display: inline-block;
+            width: 6px;
+            height: 20px;
+            background: var(--brand-red);
+            border-radius: 4px;
+        }
+
+        .category-badge {
+            font-size: 0.76rem;
+            font-weight: 600;
+            color: var(--text-muted);
+            background: #e2e8f0;
+            padding: 2px 10px;
+            border-radius: 99px;
+        }
+
+        .products-grid {
+            display: grid;
+            grid-template-columns: 1fr;
+            gap: 12px;
+        }
+
+        @media (min-width: 640px) {
+            .products-grid {
+                grid-template-columns: repeat(2, 1fr);
+            }
+        }
+
+        /* ÜRÜN KARTI */
+        .product-card {
+            background: var(--card-bg);
+            border-radius: var(--radius-md);
+            padding: 11px;
+            display: flex;
+            gap: 12px;
+            box-shadow: var(--shadow-sm);
+            border: 1px solid rgba(226, 232, 240, 0.8);
+            cursor: pointer;
+            transition: transform 0.15s ease, box-shadow 0.15s ease;
+            align-items: center;
+        }
+
+        .product-card:active {
+            transform: scale(0.985);
+        }
+
+        .product-img-wrap {
+            width: 88px;
+            height: 88px;
+            border-radius: 11px;
+            overflow: hidden;
+            flex-shrink: 0;
+            background: #f1f5f9;
+            border: 1px solid #e2e8f0;
+            position: relative;
+        }
+
+        .product-img-wrap img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            display: block;
+        }
+
+        .product-info {
+            flex: 1;
+            min-width: 0;
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+            min-height: 84px;
+        }
+
+        .product-name {
+            font-family: 'Montserrat', sans-serif;
+            font-weight: 700;
+            font-size: 0.98rem;
+            color: var(--text-dark);
+            line-height: 1.25;
+            margin-bottom: 4px;
+        }
+
+        .product-desc {
+            font-size: 0.78rem;
+            color: var(--text-muted);
+            display: -webkit-box;
+            -webkit-line-clamp: 2;
+            -webkit-box-orient: vertical;
+            overflow: hidden;
+            margin-bottom: 8px;
+        }
+
+        .product-bottom {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            margin-top: auto;
+        }
+
+        .product-price {
+            display: inline-block;
+            background: linear-gradient(135deg, var(--navy-main), var(--navy-light));
+            color: var(--brand-amber);
+            font-family: 'Montserrat', sans-serif;
+            font-weight: 800;
+            font-size: 0.95rem;
+            padding: 4px 12px;
+            border-radius: 8px;
+        }
+
+        .product-detail-hint {
+            font-size: 0.73rem;
+            font-weight: 600;
+            color: var(--brand-orange);
+        }
+
+        /* ÜRÜN DETAY MODALI (MÜŞTERİ TIKLAYINCA) */
+        .modal-overlay {
+            position: fixed;
+            inset: 0;
+            background: rgba(11, 17, 32, 0.72);
+            backdrop-filter: blur(4px);
+            z-index: 300;
+            display: none;
+            align-items: center;
+            justify-content: center;
+            padding: 16px;
+        }
+
+        .modal-overlay.active {
+            display: flex;
+        }
+
+        .detail-modal {
+            background: #fff;
+            width: 100%;
+            max-width: 420px;
+            border-radius: var(--radius-lg);
+            overflow: hidden;
+            box-shadow: var(--shadow-md);
+            animation: modalPop 0.2s ease-out;
+        }
+
+        @keyframes modalPop {
+            from { transform: scale(0.92); opacity: 0; }
+            to { transform: scale(1); opacity: 1; }
+        }
+
+        .detail-img-box {
+            width: 100%;
+            height: 240px;
+            background: #0b1120;
+            position: relative;
+        }
+
+        .detail-img-box img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+
+        .detail-close-btn {
+            position: absolute;
+            top: 12px;
+            right: 12px;
+            width: 36px;
+            height: 36px;
+            border-radius: 50%;
+            background: rgba(11, 17, 32, 0.75);
+            color: #fff;
+            border: none;
+            font-size: 1.1rem;
+            cursor: pointer;
+        }
+
+        .detail-body {
+            padding: 18px;
+        }
+
+        .detail-cat-tag {
+            display: inline-block;
+            font-size: 0.72rem;
+            font-weight: 700;
+            text-transform: uppercase;
+            color: var(--brand-orange);
+            margin-bottom: 4px;
+        }
+
+        .detail-title {
+            font-family: 'Montserrat', sans-serif;
+            font-size: 1.3rem;
+            font-weight: 800;
+            color: var(--navy-main);
+            margin-bottom: 8px;
+        }
+
+        .detail-desc {
+            font-size: 0.9rem;
+            color: var(--text-muted);
+            margin-bottom: 16px;
+        }
+
+        .detail-price-box {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            padding-top: 12px;
+            border-top: 1px solid var(--border-color);
+        }
+
+        .detail-price-label {
+            font-size: 0.85rem;
+            color: var(--text-muted);
+            font-weight: 600;
+        }
+
+        .detail-price-val {
+            font-family: 'Montserrat', sans-serif;
+            font-size: 1.4rem;
+            font-weight: 900;
+            color: var(--brand-red);
+        }
+
+        /* ADMİN GİRİŞ & YÖNETİM PANELİ MODALI */
+        .admin-modal {
+            background: #fff;
+            width: 100%;
+            max-width: 680px;
+            max-height: 92vh;
+            border-radius: var(--radius-lg);
+            display: flex;
+            flex-direction: column;
+            overflow: hidden;
+            box-shadow: var(--shadow-md);
+        }
+
+        .admin-modal-header {
+            background: linear-gradient(135deg, var(--navy-dark), var(--navy-main));
+            color: #fff;
+            padding: 14px 18px;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            border-bottom: 3px solid var(--brand-orange);
+        }
+
+        .admin-modal-header h3 {
+            font-family: 'Montserrat', sans-serif;
+            font-size: 1.05rem;
+            color: var(--brand-amber);
+        }
+
+        .admin-tabs {
+            display: flex;
+            background: #f1f5f9;
+            border-bottom: 1px solid var(--border-color);
+        }
+
+        .admin-tab-btn {
+            flex: 1;
+            padding: 12px;
+            border: none;
+            background: transparent;
+            font-family: 'Poppins', sans-serif;
+            font-weight: 600;
+            font-size: 0.88rem;
+            color: var(--text-muted);
+            cursor: pointer;
+            border-bottom: 3px solid transparent;
+        }
+
+        .admin-tab-btn.active {
+            color: var(--brand-orange);
+            border-bottom-color: var(--brand-orange);
+            background: #fff;
+        }
+
+        .admin-modal-body {
+            padding: 16px;
+            overflow-y: auto;
+            flex: 1;
+        }
+
+        .form-card {
+            background: #f8fafc;
+            border: 1px solid var(--border-color);
+            border-radius: 12px;
+            padding: 14px;
+            margin-bottom: 18px;
+        }
+
+        .form-card h4 {
+            font-family: 'Montserrat', sans-serif;
+            font-size: 0.95rem;
+            margin-bottom: 12px;
+            color: var(--navy-main);
+        }
+
+        .form-group {
+            margin-bottom: 10px;
+        }
+
+        .form-group label {
+            display: block;
+            font-size: 0.78rem;
+            font-weight: 600;
+            margin-bottom: 4px;
+            color: var(--text-dark);
+        }
+
+        .form-control {
+            width: 100%;
+            padding: 10px 12px;
+            border-radius: 9px;
+            border: 1px solid #cbd5e1;
+            font-family: 'Poppins', sans-serif;
+            font-size: 0.88rem;
+            outline: none;
+        }
+
+        .form-control:focus {
+            border-color: var(--brand-orange);
+        }
+
+        .form-row {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 10px;
+        }
+
+        @media (max-width: 480px) {
+            .form-row {
+                grid-template-columns: 1fr;
+            }
+        }
+
+        .photo-upload-area {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            flex-wrap: wrap;
+        }
+
+        .photo-preview {
+            width: 64px;
+            height: 64px;
+            border-radius: 10px;
+            object-fit: cover;
+            border: 1px solid var(--border-color);
+            background: #fff;
+        }
+
+        .btn {
+            padding: 10px 16px;
+            border-radius: 9px;
+            border: none;
+            font-family: 'Poppins', sans-serif;
+            font-weight: 600;
+            font-size: 0.86rem;
+            cursor: pointer;
+            transition: opacity 0.15s;
+        }
+
+        .btn:active {
+            opacity: 0.85;
+        }
+
+        .btn-primary {
+            background: linear-gradient(135deg, var(--brand-orange), var(--brand-red));
+            color: #fff;
+        }
+
+        .btn-secondary {
+            background: #e2e8f0;
+            color: var(--text-dark);
+        }
+
+        .btn-danger {
+            background: #fee2e2;
+            color: #dc2626;
+        }
+
+        .btn-edit {
+            background: #dbeafe;
+            color: #1d4ed8;
+        }
+
+        .admin-list-item {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            gap: 10px;
+            padding: 10px;
+            border: 1px solid var(--border-color);
+            border-radius: 10px;
+            margin-bottom: 8px;
+            background: #fff;
+        }
+
+        .admin-item-left {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            min-width: 0;
+        }
+
+        .admin-item-left img {
+            width: 46px;
+            height: 46px;
+            border-radius: 8px;
+            object-fit: cover;
+            flex-shrink: 0;
+        }
+
+        .admin-item-title {
+            font-weight: 700;
+            font-size: 0.88rem;
+            white-space: nowrap;
+            overflow: hidden;
+            text-overflow: ellipsis;
+        }
+
+        .admin-item-sub {
+            font-size: 0.76rem;
+            color: var(--text-muted);
+        }
+
+        .admin-item-actions {
+            display: flex;
+            gap: 6px;
+            flex-shrink: 0;
+        }
+
+        .btn-sm {
+            padding: 6px 10px;
+            font-size: 0.76rem;
+            border-radius: 7px;
+        }
+
+        .empty-state {
+            text-align: center;
+            padding: 36px 16px;
+            color: var(--text-muted);
+            font-size: 0.9rem;
+        }
+
+        .toast-msg {
+            position: fixed;
+            bottom: 20px;
+            left: 50%;
+            transform: translateX(-50%) translateY(80px);
+            background: var(--navy-dark);
+            color: var(--brand-amber);
+            border: 1px solid var(--brand-orange);
+            padding: 10px 20px;
+            border-radius: 99px;
+            font-size: 0.85rem;
+            font-weight: 600;
+            z-index: 500;
+            transition: transform 0.25s ease;
+            box-shadow: 0 6px 20px rgba(0,0,0,0.3);
+        }
+
+        .toast-msg.show {
+            transform: translateX(-50%) translateY(0);
+        }
+    </style>
+</head>
+<body>
+
+    <!-- ÜST SABİT BAR -->
+    <header class="top-navbar">
+        <button class="hamburger-btn" id="openDrawerBtn" aria-label="Kategoriler Menüsü">
+            <div class="hamburger-icon">
+                <span></span>
+                <span></span>
+                <span></span>
+            </div>
+            <span>KATEGORİLER</span>
+        </button>
+
+        <a href="#" class="nav-brand">
+            <img src="https://i.hizliresim.com/cklqoreh.jpg" alt="Dasti Cafe Logo">
+            <span class="nav-brand-text">DASTI CAFE</span>
+        </a>
+
+        <button class="admin-trigger-btn" id="openAdminBtn" title="Yönetici Paneli">⚙️</button>
+    </header>
+
+    <!-- SOL HAMBURGER ÇEKMECE MENÜSÜ -->
+    <div class="drawer-backdrop" id="drawerBackdrop"></div>
+    <aside class="side-drawer" id="sideDrawer">
+        <div class="drawer-header">
+            <div class="drawer-brand">
+                <img src="https://i.hizliresim.com/cklqoreh.jpg" alt="Dasti Cafe Logo">
+                <div>
+                    <div class="drawer-brand-title">DASTI CAFE</div>
+                    <div class="drawer-brand-sub">Fast Food & Cafe Menü</div>
+                </div>
+            </div>
+            <button class="drawer-close" id="closeDrawerBtn">✕</button>
+        </div>
+        <div class="drawer-section-label">Hızlı Kategori Seçimi</div>
+        <ul class="drawer-cat-list" id="drawerCatList"></ul>
+        <div class="drawer-footer">
+            <button class="drawer-admin-btn" id="drawerAdminBtn">🔒 Yönetici (Admin) Girişi</button>
+        </div>
+    </aside>
+
+    <!-- HERO BANNER & ARAMA -->
+    <section class="hero-banner">
+        <div class="hero-logo-wrap">
+            <img src="https://i.hizliresim.com/cklqoreh.jpg" alt="Dasti Cafe Fast Food Logo">
+        </div>
+        <h1 class="hero-title">Dasti Cafe</h1>
+        <div class="hero-subtitle">Fast Food • Cafe • Oyun</div>
+        <div class="search-box">
+            <span class="search-icon">🔍</span>
+            <input type="text" id="searchInput" placeholder="Menüde ürün veya lezzet ara...">
+        </div>
+    </section>
+
+    <!-- YATAY KATEGORİ ŞERİDİ -->
+    <div class="category-strip-wrap">
+        <div class="category-strip" id="categoryStrip"></div>
+    </div>
+
+    <!-- KATEGORİLER VE ÜRÜNLER LİSTESİ -->
+    <main class="menu-container" id="menuContainer"></main>
+
+    <!-- ÜRÜN DETAY MODALI -->
+    <div class="modal-overlay" id="productDetailModal">
+        <div class="detail-modal">
+            <div class="detail-img-box">
+                <img id="detailImg" src="" alt="Ürün Görseli">
+                <button class="detail-close-btn" id="closeDetailBtn">✕</button>
+            </div>
+            <div class="detail-body">
+                <span class="detail-cat-tag" id="detailCat"></span>
+                <h2 class="detail-title" id="detailTitle"></h2>
+                <p class="detail-desc" id="detailDesc"></p>
+                <div class="detail-price-box">
+                    <span class="detail-price-label">Birim Fiyatı</span>
+                    <span class="detail-price-val" id="detailPrice"></span>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- ADMİN ŞİFRE GİRİŞ MODALI -->
+    <div class="modal-overlay" id="loginModal">
+        <div class="detail-modal" style="max-width: 360px;">
+            <div class="admin-modal-header">
+                <h3>🔒 Yönetici Girişi</h3>
+                <button class="drawer-close" id="closeLoginBtn">✕</button>
+            </div>
+            <div class="detail-body">
+                <form id="loginForm">
+                    <div class="form-group">
+                        <label>Yönetici Şifresi</label>
+                        <input type="password" id="adminPassInput" class="form-control" placeholder="Şifreyi girin..." required>
+                    </div>
+                    <button type="submit" class="btn btn-primary" style="width: 100%; margin-top: 8px;">Panele Giriş Yap</button>
+                </form>
+            </div>
+        </div>
+    </div>
+
+    <!-- ADMİN YÖNETİM PANELİ MODALI -->
+    <div class="modal-overlay" id="adminPanelModal">
+        <div class="admin-modal">
+            <div class="admin-modal-header">
+                <h3>⚙️ Dasti Cafe - Menü Yönetimi</h3>
+                <button class="drawer-close" id="closeAdminPanelBtn">✕</button>
+            </div>
+
+            <div class="admin-tabs">
+                <button class="admin-tab-btn active" data-tab="tabProducts">🍔 Ürün Yönetimi</button>
+                <button class="admin-tab-btn" data-tab="tabCategories">📂 Kategori Yönetimi</button>
+            </div>
+
+            <div class="admin-modal-body">
+                <!-- ÜRÜN EKLE / DÜZENLE SEKMESİ -->
+                <div id="tabProducts" class="admin-tab-content">
+                    <div class="form-card">
+                        <h4 id="productFormTitle">➕ Yeni Ürün Ekle</h4>
+                        <form id="productForm">
+                            <input type="hidden" id="editProductId">
+                            <div class="form-row">
+                                <div class="form-group">
+                                    <label>Ürün Adı *</label>
+                                    <input type="text" id="prodName" class="form-control" placeholder="Örn: Dasti Özel Burger" required>
+                                </div>
+                                <div class="form-group">
+                                    <label>Fiyat (₺) *</label>
+                                    <input type="number" step="0.01" id="prodPrice" class="form-control" placeholder="Örn: 220" required>
+                                </div>
+                            </div>
+
+                            <div class="form-group">
+                                <label>Kategori *</label>
+                                <select id="prodCategory" class="form-control" required></select>
+                            </div>
+
+                            <div class="form-group">
+                                <label>Ürün Açıklaması / İçindekiler</label>
+                                <input type="text" id="prodDesc" class="form-control" placeholder="Örn: 150gr köfte, cheddar, patates kızartması ile">
+                            </div>
+
+                            <div class="form-group">
+                                <label>Ürün Fotoğrafı (Galeriden Seç veya Link Yapıştır)</label>
+                                <div class="photo-upload-area">
+                                    <img id="prodImgPreview" class="photo-preview" src="https://i.hizliresim.com/cklqoreh.jpg" alt="Önizleme">
+                                    <div style="flex:1; min-width: 200px;">
+                                        <input type="file" id="prodFileInput" accept="image/*" class="form-control" style="margin-bottom:6px; padding:6px;">
+                                        <input type="url" id="prodImgUrl" class="form-control" placeholder="Veya doğrudan resim URL'si yapıştırın">
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div style="display:flex; gap:8px; margin-top:12px;">
+                                <button type="submit" class="btn btn-primary" id="saveProductBtn">Ürünü Kaydet</button>
+                                <button type="button" class="btn btn-secondary" id="cancelEditProdBtn" style="display:none;">İptal</button>
+                            </div>
+                        </form>
+                    </div>
+
+                    <h4 style="margin-bottom: 10px; font-family:'Montserrat',sans-serif; font-size:0.95rem;">Mevcut Ürünler</h4>
+                    <div id="adminProductsList"></div>
+                </div>
+
+                <!-- KATEGORİ EKLE / DÜZENLE SEKMESİ -->
+                <div id="tabCategories" class="admin-tab-content" style="display:none;">
+                    <div class="form-card">
+                        <h4 id="catFormTitle">➕ Yeni Kategori Ekle</h4>
+                        <form id="categoryForm">
+                            <input type="hidden" id="editCatId">
+                            <div class="form-group">
+                                <label>Kategori Adı *</label>
+                                <input type="text" id="catNameInput" class="form-control" placeholder="Örn: Burgerler, Pizzalar, Soğuk İçecekler" required>
+                            </div>
+                            <div style="display:flex; gap:8px;">
+                                <button type="submit" class="btn btn-primary" id="saveCatBtn">Kategoriyi Kaydet</button>
+                                <button type="button" class="btn btn-secondary" id="cancelEditCatBtn" style="display:none;">İptal</button>
+                            </div>
+                        </form>
+                    </div>
+
+                    <h4 style="margin-bottom: 10px; font-family:'Montserrat',sans-serif; font-size:0.95rem;">Mevcut Kategoriler (Sıralarını Değiştirebilirsiniz)</h4>
+                    <div id="adminCategoriesList"></div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- BİLDİRİM TOAST -->
+    <div class="toast-msg" id="toastMsg">İşlem Başarılı</div>
+
+    <!-- FIREBASE VE MENÜ SİSTEMİ KODLARI -->
+    <script type="module">
+        import { initializeApp } from "https://www.gstatic.com/firebasejs/10.12.2/firebase-app.js";
+        import { getFirestore, doc, setDoc, onSnapshot } from "https://www.gstatic.com/firebasejs/10.12.2/firebase-firestore.js";
+
+        const LOGO_URL = "https://i.hizliresim.com/cklqoreh.jpg";
+        const ADMIN_PASSWORD = "1234";
+        const STORAGE_KEY = "dasti_cafe_qr_menu_v1";
+
+        // Varsayılan Başlangıç Verisi
+        const defaultData = {
+            categories: [
+                { id: "cat_burger", name: "Burger & Fast Food" },
+                { id: "cat_pizza", name: "Pizza & Atıştırmalıklar" },
+                { id: "cat_sicak", name: "Sıcak İçecekler" },
+                { id: "cat_soguk", name: "Soğuk İçecekler & Frappe" }
+            ],
+            products: [
+                {
+                    id: "p_1",
+                    name: "Dasti Clasic Burger Menü",
+                    price: 210,
+                    categoryId: "cat_burger",
+                    desc: "140gr dana burger köftesi, cheddar peyniri, karamelize soğan, özel Dasti sos ve patates kızartması.",
+                    image: "https://images.unsplash.com/photo-1568901346375-23c9450c58cd?auto=format&fit=crop&w=600&q=80"
+                },
+                {
+                    id: "p_2",
+                    name: "Karışık İtalyan Pizza",
+                    price: 240,
+                    categoryId: "cat_pizza",
+                    desc: "Mozzarella peyniri, sucuk, sosis, mantar, mısır, renkli biberler ve özel pizza sosu.",
+                    image: "https://images.unsplash.com/photo-1513104890138-7c749659a591?auto=format&fit=crop&w=600&q=80"
+                },
+                {
+                    id: "p_3",
+                    name: "Çıtır Patates Sepeti",
+                    price: 95,
+                    categoryId: "cat_pizza",
+                    desc: "Baharatlı çıtır elma dilim ve parmak patates, ketçap ve mayonez eşliğinde.",
+                    image: "https://images.unsplash.com/photo-1576107232684-1279f3908594?auto=format&fit=crop&w=600&q=80"
+                },
+                {
+                    id: "p_4",
+                    name: "Filtre Kahve",
+                    price: 85,
+                    categoryId: "cat_sicak",
+                    desc: "Taze çekilmiş %100 Arabica kahve çekirdeklerinden demlenmiş sıcak filtre kahve.",
+                    image: "https://images.unsplash.com/photo-1495474472287-4d71bcdd2085?auto=format&fit=crop&w=600&q=80"
+                },
+                {
+                    id: "p_5",
+                    name: "Karamelli Buzlu Frappe",
+                    price: 115,
+                    categoryId: "cat_soguk",
+                    desc: "Krema dolgulu, bol karamel soslu buzlu soğuk kahve keyfi.",
+                    image: "https://images.unsplash.com/photo-1572490122747-3968b75cc699?auto=format&fit=crop&w=600&q=80"
+                }
+            ]
+        };
+
+        // Yerel Hafızadan Yükle
+        let menuData = JSON.parse(localStorage.getItem(STORAGE_KEY)) || defaultData;
+        let currentPhotoData = "";
+
+        // Firebase (dosti-de5da) Otomatik Bulut Senkronizasyonu
+        let db = null;
+        let menuDocRef = null;
+        try {
+            const app = initializeApp({ projectId: "dosti-de5da" });
+            db = getFirestore(app);
+            menuDocRef = doc(db, "urun1", "dasti_tam_menu");
+
+            onSnapshot(menuDocRef, (snap) => {
+                if (snap.exists()) {
+                    const cloudData = snap.data();
+                    if (cloudData.categories && cloudData.products) {
+                        menuData = cloudData;
+                        localStorage.setItem(STORAGE_KEY, JSON.stringify(menuData));
+                        renderAll();
+                    }
+                } else {
+                    setDoc(menuDocRef, menuData).catch(() => {});
+                }
+            }, () => {
+                // Çevrimdışıysa yerel veriyle devam et
+            });
+        } catch (err) {
+            console.warn("Yerel depolama modunda çalışıyor.");
+        }
+
+        async function saveMenuData(toastText = "Değişiklikler kaydedildi") {
+            localStorage.setItem(STORAGE_KEY, JSON.stringify(menuData));
+            renderAll();
+            showToast(toastText);
+            if (menuDocRef) {
+                try {
+                    await setDoc(menuDocRef, menuData);
+                } catch (e) {
+                    console.warn("Bulut kaydı yapılamadı, yerel hafızaya kaydedildi.");
+                }
+            }
+        }
+
+        function showToast(msg) {
+            const t = document.getElementById("toastMsg");
+            t.textContent = msg;
+            t.classList.add("show");
+            setTimeout(() => t.classList.remove("show"), 2200);
+        }
+
+        // TÜM ARAYÜZÜ ÇİZ
+        function renderAll(searchTerm = "") {
+            renderDrawerCategories();
+            renderCategoryStrip();
+            renderMenu(searchTerm);
+            renderAdminLists();
+        }
+
+        // SOL HAMBURGER KATEGORİ LİSTESİ
+        function renderDrawerCategories() {
+            const listEl = document.getElementById("drawerCatList");
+            listEl.innerHTML = "";
+            menuData.categories.forEach(cat => {
+                const count = menuData.products.filter(p => p.categoryId === cat.id).length;
+                const li = document.createElement("li");
+                li.className = "drawer-cat-item";
+                li.innerHTML = `
+                    <span>${cat.name}</span>
+                    <span class="drawer-cat-count">${count}</span>
+                `;
+                li.addEventListener("click", () => {
+                    closeDrawer();
+                    scrollToCategory(cat.id);
+                });
+                listEl.appendChild(li);
+            });
+        }
+
+        // YATAY KATEGORİ ŞERİDİ
+        function renderCategoryStrip() {
+            const stripEl = document.getElementById("categoryStrip");
+            stripEl.innerHTML = "";
+            menuData.categories.forEach((cat, idx) => {
+                const btn = document.createElement("button");
+                btn.className = "cat-pill" + (idx === 0 ? " active" : "");
+                btn.dataset.catId = cat.id;
+                btn.textContent = cat.name;
+                btn.addEventListener("click", () => {
+                    document.querySelectorAll(".cat-pill").forEach(b => b.classList.remove("active"));
+                    btn.classList.add("active");
+                    scrollToCategory(cat.id);
+                });
+                stripEl.appendChild(btn);
+            });
+        }
+
+        function scrollToCategory(catId) {
+            const target = document.getElementById("section_" + catId);
+            if (target) {
+                target.scrollIntoView({ behavior: "smooth", block: "start" });
+            }
+        }
+
+        // ANA MENÜ (KATEGORİ KATEGORİ AŞAĞI KAYDIRMALI)
+        function renderMenu(searchTerm = "") {
+            const container = document.getElementById("menuContainer");
+            container.innerHTML = "";
+            const q = searchTerm.trim().toLowerCase();
+
+            let totalShown = 0;
+
+            menuData.categories.forEach(cat => {
+                const items = menuData.products.filter(p => {
+                    const inCat = p.categoryId === cat.id;
+                    if (!inCat) return false;
+                    if (!q) return true;
+                    return p.name.toLowerCase().includes(q) || (p.desc && p.desc.toLowerCase().includes(q));
+                });
+
+                if (items.length === 0 && q !== "") return;
+
+                const section = document.createElement("section");
+                section.className = "category-block";
+                section.id = "section_" + cat.id;
+
+                section.innerHTML = `
+                    <div class="category-header">
+                        <h2 class="category-title">${cat.name}</h2>
+                        <span class="category-badge">${items.length} Ürün</span>
+                    </div>
+                    <div class="products-grid" id="grid_${cat.id}"></div>
+                `;
+
+                container.appendChild(section);
+                const grid = section.querySelector(`#grid_${cat.id}`);
+
+                if (items.length === 0) {
+                    grid.innerHTML = `<div class="empty-state" style="padding:14px;">Bu kategoride henüz ürün bulunmuyor.</div>`;
+                } else {
+                    items.forEach(prod => {
+                        totalShown++;
+                        const card = document.createElement("article");
+                        card.className = "product-card";
+                        const imgSrc = prod.image || LOGO_URL;
+                        card.innerHTML = `
+                            <div class="product-img-wrap">
+                                <img src="${imgSrc}" alt="${prod.name}" loading="lazy" onerror="this.src='${LOGO_URL}'">
+                            </div>
+                            <div class="product-info">
+                                <div>
+                                    <div class="product-name">${prod.name}</div>
+                                    <div class="product-desc">${prod.desc || ""}</div>
+                                </div>
+                                <div class="product-bottom">
+                                    <span class="product-price">${Number(prod.price).toLocaleString('tr-TR')} ₺</span>
+                                    <span class="product-detail-hint">İncele ›</span>
+                                </div>
+                            </div>
+                        `;
+                        card.addEventListener("click", () => openProductDetail(prod, cat.name));
+                        grid.appendChild(card);
+                    });
+                }
+            });
+
+            if (totalShown === 0 && q !== "") {
+                container.innerHTML = `<div class="empty-state">Aradığınız "<strong>${searchTerm}</strong>" ile eşleşen ürün bulunamadı.</div>`;
+            }
+        }
+
+        // ÜRÜN DETAY MODALI AÇ
+        function openProductDetail(prod, catName) {
+            document.getElementById("detailImg").src = prod.image || LOGO_URL;
+            document.getElementById("detailCat").textContent = catName;
+            document.getElementById("detailTitle").textContent = prod.name;
+            document.getElementById("detailDesc").textContent = prod.desc || "Lezzetli Dasti Cafe ürünü.";
+            document.getElementById("detailPrice").textContent = `${Number(prod.price).toLocaleString('tr-TR')} ₺`;
+            document.getElementById("productDetailModal").classList.add("active");
+        }
+
+        // ADMİN PANELİ LİSTELERİ
+        function renderAdminLists() {
+            // Kategori Select Doldur
+            const selectEl = document.getElementById("prodCategory");
+            selectEl.innerHTML = "";
+            menuData.categories.forEach(cat => {
+                const opt = document.createElement("option");
+                opt.value = cat.id;
+                opt.textContent = cat.name;
+                selectEl.appendChild(opt);
+            });
+
+            // Admin Ürün Listesi
+            const prodListEl = document.getElementById("adminProductsList");
+            prodListEl.innerHTML = "";
+            menuData.products.forEach(prod => {
+                const catObj = menuData.categories.find(c => c.id === prod.categoryId);
+                const div = document.createElement("div");
+                div.className = "admin-list-item";
+                div.innerHTML = `
+                    <div class="admin-item-left">
+                        <img src="${prod.image || LOGO_URL}" onerror="this.src='${LOGO_URL}'">
+                        <div>
+                            <div class="admin-item-title">${prod.name}</div>
+                            <div class="admin-item-sub">${catObj ? catObj.name : "Kategorisiz"} • <strong>${prod.price} ₺</strong></div>
+                        </div>
+                    </div>
+                    <div class="admin-item-actions">
+                        <button class="btn btn-edit btn-sm" data-edit="${prod.id}">Düzenle</button>
+                        <button class="btn btn-danger btn-sm" data-del="${prod.id}">Sil</button>
+                    </div>
+                `;
+                div.querySelector(`[data-edit="${prod.id}"]`).addEventListener("click", () => startEditProduct(prod.id));
+                div.querySelector(`[data-del="${prod.id}"]`).addEventListener("click", () => deleteProduct(prod.id));
+                prodListEl.appendChild(div);
+            });
+
+            // Admin Kategori Listesi
+            const catListEl = document.getElementById("adminCategoriesList");
+            catListEl.innerHTML = "";
+            menuData.categories.forEach((cat, idx) => {
+                const div = document.createElement("div");
+                div.className = "admin-list-item";
+                div.innerHTML = `
+                    <div class="admin-item-left">
+                        <div>
+                            <div class="admin-item-title">${cat.name}</div>
+                            <div class="admin-item-sub">${menuData.products.filter(p => p.categoryId === cat.id).length} ürün kayıtlı</div>
+                        </div>
+                    </div>
+                    <div class="admin-item-actions">
+                        <button class="btn btn-secondary btn-sm" data-up="${idx}" ${idx === 0 ? "disabled" : ""}>↑</button>
+                        <button class="btn btn-secondary btn-sm" data-down="${idx}" ${idx === menuData.categories.length - 1 ? "disabled" : ""}>↓</button>
+                        <button class="btn btn-edit btn-sm" data-editcat="${cat.id}">Düzenle</button>
+                        <button class="btn btn-danger btn-sm" data-delcat="${cat.id}">Sil</button>
+                    </div>
+                `;
+                const upBtn = div.querySelector(`[data-up="${idx}"]`);
+                const downBtn = div.querySelector(`[data-down="${idx}"]`);
+                if (upBtn) upBtn.addEventListener("click", () => moveCategory(idx, -1));
+                if (downBtn) downBtn.addEventListener("click", () => moveCategory(idx, 1));
+                div.querySelector(`[data-editcat="${cat.id}"]`).addEventListener("click", () => startEditCategory(cat.id));
+                div.querySelector(`[data-delcat="${cat.id}"]`).addEventListener("click", () => deleteCategory(cat.id));
+                catListEl.appendChild(div);
+            });
+        }
+
+        // FOTOĞRAF KÜÇÜLTME (CANVAS) - HIZLI YÜKLEME İÇİN
+        document.getElementById("prodFileInput").addEventListener("change", (e) => {
+            const file = e.target.files[0];
+            if (!file) return;
+            const reader = new FileReader();
+            reader.onload = (ev) => {
+                const img = new Image();
+                img.onload = () => {
+                    const canvas = document.createElement("canvas");
+                    const maxSize = 600;
+                    let w = img.width;
+                    let h = img.height;
+                    if (w > h && w > maxSize) {
+                        h = Math.round((h * maxSize) / w);
+                        w = maxSize;
+                    } else if (h > maxSize) {
+                        w = Math.round((w * maxSize) / h);
+                        h = maxSize;
+                    }
+                    canvas.width = w;
+                    canvas.height = h;
+                    const ctx = canvas.getContext("2d");
+                    ctx.drawImage(img, 0, 0, w, h);
+                    currentPhotoData = canvas.toDataURL("image/jpeg", 0.78);
+                    document.getElementById("prodImgPreview").src = currentPhotoData;
+                    document.getElementById("prodImgUrl").value = "";
+                };
+                img.src = ev.target.result;
+            };
+            reader.readAsDataURL(file);
+        });
+
+        document.getElementById("prodImgUrl").addEventListener("input", (e) => {
+            const val = e.target.value.trim();
+            if (val) {
+                currentPhotoData = val;
+                document.getElementById("prodImgPreview").src = val;
+            }
+        });
+
+        // ÜRÜN KAYDET / GÜNCELLE
+        document.getElementById("productForm").addEventListener("submit", (e) => {
+            e.preventDefault();
+            const editId = document.getElementById("editProductId").value;
+            const name = document.getElementById("prodName").value.trim();
+            const price = parseFloat(document.getElementById("prodPrice").value);
+            const categoryId = document.getElementById("prodCategory").value;
+            const desc = document.getElementById("prodDesc").value.trim();
+            const image = currentPhotoData || document.getElementById("prodImgUrl").value.trim() || LOGO_URL;
+
+            if (editId) {
+                const idx = menuData.products.findIndex(p => p.id === editId);
+                if (idx > -1) {
+                    menuData.products[idx] = { id: editId, name, price, categoryId, desc, image };
+                }
+                resetProductForm();
+                saveMenuData("Ürün güncellendi");
+            } else {
+                menuData.products.push({
+                    id: "p_" + Date.now(),
+                    name,
+                    price,
+                    categoryId,
+                    desc,
+                    image
+                });
+                resetProductForm();
+                saveMenuData("Yeni ürün eklendi");
+            }
+        });
+
+        function startEditProduct(prodId) {
+            const prod = menuData.products.find(p => p.id === prodId);
+            if (!prod) return;
+            document.getElementById("productFormTitle").textContent = "✏️ Ürünü Düzenle";
+            document.getElementById("editProductId").value = prod.id;
+            document.getElementById("prodName").value = prod.name;
+            document.getElementById("prodPrice").value = prod.price;
+            document.getElementById("prodCategory").value = prod.categoryId;
+            document.getElementById("prodDesc").value = prod.desc || "";
+            currentPhotoData = prod.image || LOGO_URL;
+            document.getElementById("prodImgPreview").src = currentPhotoData;
+            document.getElementById("prodImgUrl").value = prod.image && prod.image.startsWith("http") ? prod.image : "";
+            document.getElementById("saveProductBtn").textContent = "Güncellemeyi Kaydet";
+            document.getElementById("cancelEditProdBtn").style.display = "inline-block";
+            document.querySelector(".admin-modal-body").scrollTo({ top: 0, behavior: "smooth" });
+        }
+
+        function resetProductForm() {
+            document.getElementById("productForm").reset();
+            document.getElementById("editProductId").value = "";
+            document.getElementById("productFormTitle").textContent = "➕ Yeni Ürün Ekle";
+            document.getElementById("prodImgPreview").src = LOGO_URL;
+            currentPhotoData = "";
+            document.getElementById("saveProductBtn").textContent = "Ürünü Kaydet";
+            document.getElementById("cancelEditProdBtn").style.display = "none";
+        }
+
+        document.getElementById("cancelEditProdBtn").addEventListener("click", resetProductForm);
+
+        function deleteProduct(prodId) {
+            if (!confirm("Bu ürünü menüden silmek istediğinize emin misiniz?")) return;
+            menuData.products = menuData.products.filter(p => p.id !== prodId);
+            saveMenuData("Ürün silindi");
+        }
+
+        // KATEGORİ EKLE / DÜZENLE / SİL / SIRALA
+        document.getElementById("categoryForm").addEventListener("submit", (e) => {
+            e.preventDefault();
+            const editId = document.getElementById("editCatId").value;
+            const name = document.getElementById("catNameInput").value.trim();
+            if (!name) return;
+
+            if (editId) {
+                const cat = menuData.categories.find(c => c.id === editId);
+                if (cat) cat.name = name;
+                resetCatForm();
+                saveMenuData("Kategori güncellendi");
+            } else {
+                menuData.categories.push({ id: "cat_" + Date.now(), name });
+                resetCatForm();
+                saveMenuData("Kategori eklendi");
+            }
+        });
+
+        function startEditCategory(catId) {
+            const cat = menuData.categories.find(c => c.id === catId);
+            if (!cat) return;
+            document.getElementById("catFormTitle").textContent = "✏️ Kategoriyi Düzenle";
+            document.getElementById("editCatId").value = cat.id;
+            document.getElementById("catNameInput").value = cat.name;
+            document.getElementById("saveCatBtn").textContent = "Güncelle";
+            document.getElementById("cancelEditCatBtn").style.display = "inline-block";
+        }
+
+        function resetCatForm() {
+            document.getElementById("categoryForm").reset();
+            document.getElementById("editCatId").value = "";
+            document.getElementById("catFormTitle").textContent = "➕ Yeni Kategori Ekle";
+            document.getElementById("saveCatBtn").textContent = "Kategoriyi Kaydet";
+            document.getElementById("cancelEditCatBtn").style.display = "none";
+        }
+
+        document.getElementById("cancelEditCatBtn").addEventListener("click", resetCatForm);
+
+        function moveCategory(index, dir) {
+            const targetIdx = index + dir;
+            if (targetIdx < 0 || targetIdx >= menuData.categories.length) return;
+            const temp = menuData.categories[index];
+            menuData.categories[index] = menuData.categories[targetIdx];
+            menuData.categories[targetIdx] = temp;
+            saveMenuData("Kategori sırası güncellendi");
+        }
+
+        function deleteCategory(catId) {
+            if (menuData.categories.length <= 1) {
+                alert("Menüde en az 1 kategori bulunmalıdır.");
+                return;
+            }
+            if (!confirm("Bu kategoriyi ve içindeki ürünleri silmek istediğinize emin misiniz?")) return;
+            menuData.categories = menuData.categories.filter(c => c.id !== catId);
+            menuData.products = menuData.products.filter(p => p.categoryId !== catId);
+            saveMenuData("Kategori silindi");
+        }
+
+        // ÇEKMECE (DRAWER) VE MODAL KONTROLLERİ
+        const sideDrawer = document.getElementById("sideDrawer");
+        const drawerBackdrop = document.getElementById("drawerBackdrop");
+
+        function openDrawer() {
+            sideDrawer.classList.add("open");
+            drawerBackdrop.classList.add("open");
+        }
+
+        function closeDrawer() {
+            sideDrawer.classList.remove("open");
+            drawerBackdrop.classList.remove("open");
+        }
+
+        document.getElementById("openDrawerBtn").addEventListener("click", openDrawer);
+        document.getElementById("closeDrawerBtn").addEventListener("click", closeDrawer);
+        drawerBackdrop.addEventListener("click", closeDrawer);
+
+        document.getElementById("closeDetailBtn").addEventListener("click", () => {
+            document.getElementById("productDetailModal").classList.remove("active");
+        });
+        document.getElementById("productDetailModal").addEventListener("click", (e) => {
+            if (e.target.id === "productDetailModal") {
+                document.getElementById("productDetailModal").classList.remove("active");
+            }
+        });
+
+        // ADMİN GİRİŞ KONTROLÜ
+        function promptAdminLogin() {
+            closeDrawer();
+            document.getElementById("adminPassInput").value = "";
+            document.getElementById("loginModal").classList.add("active");
+            setTimeout(() => document.getElementById("adminPassInput").focus(), 100);
+        }
+
+        document.getElementById("openAdminBtn").addEventListener("click", promptAdminLogin);
+        document.getElementById("drawerAdminBtn").addEventListener("click", promptAdminLogin);
+        document.getElementById("closeLoginBtn").addEventListener("click", () => {
+            document.getElementById("loginModal").classList.remove("active");
+        });
+
+        document.getElementById("loginForm").addEventListener("submit", (e) => {
+            e.preventDefault();
+            const pass = document.getElementById("adminPassInput").value;
+            if (pass === ADMIN_PASSWORD) {
+                document.getElementById("loginModal").classList.remove("active");
+                document.getElementById("adminPanelModal").classList.add("active");
+            } else {
+                alert("Hatalı yönetici şifresi!");
+            }
+        });
+
+        document.getElementById("closeAdminPanelBtn").addEventListener("click", () => {
+            document.getElementById("adminPanelModal").classList.remove("active");
+        });
+
+        // ADMİN SEKME GEÇİŞLERİ
+        document.querySelectorAll(".admin-tab-btn").forEach(btn => {
+            btn.addEventListener("click", () => {
+                document.querySelectorAll(".admin-tab-btn").forEach(b => b.classList.remove("active"));
+                btn.classList.add("active");
+                const target = btn.dataset.tab;
+                document.querySelectorAll(".admin-tab-content").forEach(c => {
+                    c.style.display = c.id === target ? "block" : "none";
+                });
+            });
+        });
+
+        // ARAMA KUTUSU
+        document.getElementById("searchInput").addEventListener("input", (e) => {
+            renderMenu(e.target.value);
+        });
+
+        // İLK ÇALIŞTIRMA
+        renderAll();
+    </script>
+</body>
+</html>
