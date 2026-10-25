@@ -824,6 +824,11 @@
             opacity: 0.85;
         }
 
+        .btn:disabled {
+            opacity: 0.35;
+            cursor: not-allowed;
+        }
+
         .btn-primary {
             background: linear-gradient(135deg, var(--brand-orange), var(--brand-red));
             color: #fff;
@@ -844,6 +849,52 @@
             color: #1d4ed8;
         }
 
+        /* ADMİN KATEGORİ GRUPLU ÜRÜN LİSTESİ */
+        .admin-cat-group {
+            background: #f8fafc;
+            border: 1px solid var(--border-color);
+            border-radius: 12px;
+            padding: 12px;
+            margin-bottom: 16px;
+        }
+
+        .admin-cat-group-header {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            padding-bottom: 8px;
+            margin-bottom: 10px;
+            border-bottom: 2px solid var(--brand-orange);
+        }
+
+        .admin-cat-group-title {
+            font-family: 'Montserrat', sans-serif;
+            font-weight: 800;
+            font-size: 0.92rem;
+            color: var(--navy-main);
+            display: flex;
+            align-items: center;
+            gap: 6px;
+        }
+
+        .admin-cat-group-title::before {
+            content: "";
+            display: inline-block;
+            width: 5px;
+            height: 16px;
+            background: var(--brand-red);
+            border-radius: 3px;
+        }
+
+        .admin-cat-group-badge {
+            background: var(--navy-main);
+            color: var(--brand-amber);
+            font-size: 0.72rem;
+            font-weight: 700;
+            padding: 2px 9px;
+            border-radius: 99px;
+        }
+
         .admin-list-item {
             display: flex;
             align-items: center;
@@ -854,6 +905,10 @@
             border-radius: 10px;
             margin-bottom: 8px;
             background: #fff;
+        }
+
+        .admin-list-item:last-child {
+            margin-bottom: 0;
         }
 
         .admin-item-left {
@@ -1084,7 +1139,7 @@
                         </form>
                     </div>
 
-                    <h4 style="margin-bottom: 10px; font-family:'Montserrat',sans-serif; font-size:0.95rem;">Mevcut Ürünler (Sıralarını Değiştirebilirsiniz)</h4>
+                    <h4 style="margin-bottom: 10px; font-family:'Montserrat',sans-serif; font-size:0.95rem;">Kategorilere Göre Mevcut Ürünler (Sıralarını Değiştirebilirsiniz)</h4>
                     <div id="adminProductsList"></div>
                 </div>
 
@@ -1356,10 +1411,11 @@
             document.getElementById("productDetailModal").classList.add("active");
         }
 
-        // ADMİN PANELİ LİSTELERİ
+        // ADMİN PANELİ LİSTELERİ (KATEGORİ BAZLI GRUPLANMIŞ ÜRÜNLER)
         function renderAdminLists() {
             // Kategori Select Doldur
             const selectEl = document.getElementById("prodCategory");
+            const prevSelected = selectEl.value;
             selectEl.innerHTML = "";
             menuData.categories.forEach(cat => {
                 const opt = document.createElement("option");
@@ -1367,36 +1423,64 @@
                 opt.textContent = cat.name;
                 selectEl.appendChild(opt);
             });
+            if (prevSelected && menuData.categories.some(c => c.id === prevSelected)) {
+                selectEl.value = prevSelected;
+            }
 
-            // Admin Ürün Listesi
+            // Admin Ürün Listesi (Kendi Kategorileri İçinde Gruplu)
             const prodListEl = document.getElementById("adminProductsList");
             prodListEl.innerHTML = "";
-            menuData.products.forEach((prod, idx) => {
-                const catObj = menuData.categories.find(c => c.id === prod.categoryId);
-                const div = document.createElement("div");
-                div.className = "admin-list-item";
-                div.innerHTML = `
-                    <div class="admin-item-left">
-                        <img src="${prod.image || LOGO_URL}" onerror="this.src='${LOGO_URL}'">
-                        <div>
-                            <div class="admin-item-title">${prod.name}</div>
-                            <div class="admin-item-sub">${catObj ? catObj.name : "Kategorisiz"} • <strong>${prod.price} ₺</strong></div>
-                        </div>
+
+            menuData.categories.forEach(cat => {
+                const catProducts = menuData.products.filter(p => p.categoryId === cat.id);
+
+                const groupDiv = document.createElement("div");
+                groupDiv.className = "admin-cat-group";
+                groupDiv.innerHTML = `
+                    <div class="admin-cat-group-header">
+                        <span class="admin-cat-group-title">${cat.name}</span>
+                        <span class="admin-cat-group-badge">${catProducts.length} Ürün</span>
                     </div>
-                    <div class="admin-item-actions">
-                        <button class="btn btn-secondary btn-sm" data-produp="${idx}" ${idx === 0 ? "disabled" : ""}>↑</button>
-                        <button class="btn btn-secondary btn-sm" data-proddown="${idx}" ${idx === menuData.products.length - 1 ? "disabled" : ""}>↓</button>
-                        <button class="btn btn-edit btn-sm" data-edit="${prod.id}">Düzenle</button>
-                        <button class="btn btn-danger btn-sm" data-del="${prod.id}">Sil</button>
-                    </div>
+                    <div class="admin-cat-group-items"></div>
                 `;
-                const upProdBtn = div.querySelector(`[data-produp="${idx}"]`);
-                const downProdBtn = div.querySelector(`[data-proddown="${idx}"]`);
-                if (upProdBtn) upProdBtn.addEventListener("click", () => moveProduct(idx, -1));
-                if (downProdBtn) downProdBtn.addEventListener("click", () => moveProduct(idx, 1));
-                div.querySelector(`[data-edit="${prod.id}"]`).addEventListener("click", () => startEditProduct(prod.id));
-                div.querySelector(`[data-del="${prod.id}"]`).addEventListener("click", () => deleteProduct(prod.id));
-                prodListEl.appendChild(div);
+
+                const itemsContainer = groupDiv.querySelector(".admin-cat-group-items");
+
+                if (catProducts.length === 0) {
+                    itemsContainer.innerHTML = `<div style="font-size:0.8rem; color:var(--text-muted); padding:6px 4px;">Bu kategoride henüz ürün yok.</div>`;
+                } else {
+                    catProducts.forEach((prod, catIdx) => {
+                        const div = document.createElement("div");
+                        div.className = "admin-list-item";
+                        const isFirst = catIdx === 0;
+                        const isLast = catIdx === catProducts.length - 1;
+
+                        div.innerHTML = `
+                            <div class="admin-item-left">
+                                <img src="${prod.image || LOGO_URL}" onerror="this.src='${LOGO_URL}'">
+                                <div>
+                                    <div class="admin-item-title">${prod.name}</div>
+                                    <div class="admin-item-sub"><strong>${Number(prod.price).toLocaleString('tr-TR')} ₺</strong>${prod.desc ? " • " + prod.desc : ""}</div>
+                                </div>
+                            </div>
+                            <div class="admin-item-actions">
+                                <button class="btn btn-secondary btn-sm" data-produp="${prod.id}" ${isFirst ? "disabled" : ""} title="Yukarı Taşı">↑</button>
+                                <button class="btn btn-secondary btn-sm" data-proddown="${prod.id}" ${isLast ? "disabled" : ""} title="Aşağı Taşı">↓</button>
+                                <button class="btn btn-edit btn-sm" data-edit="${prod.id}">Düzenle</button>
+                                <button class="btn btn-danger btn-sm" data-del="${prod.id}">Sil</button>
+                            </div>
+                        `;
+
+                        div.querySelector(`[data-produp="${prod.id}"]`).addEventListener("click", () => moveProductInCategory(prod.id, -1));
+                        div.querySelector(`[data-proddown="${prod.id}"]`).addEventListener("click", () => moveProductInCategory(prod.id, 1));
+                        div.querySelector(`[data-edit="${prod.id}"]`).addEventListener("click", () => startEditProduct(prod.id));
+                        div.querySelector(`[data-del="${prod.id}"]`).addEventListener("click", () => deleteProduct(prod.id));
+
+                        itemsContainer.appendChild(div);
+                    });
+                }
+
+                prodListEl.appendChild(groupDiv);
             });
 
             // Admin Kategori Listesi
@@ -1469,7 +1553,7 @@
             }
         });
 
-        // ÜRÜN KAYDET / GÜNCELLE / SIRALA
+        // ÜRÜN KAYDET / GÜNCELLE / KATEGORİ İÇİNDE SIRALA
         document.getElementById("productForm").addEventListener("submit", (e) => {
             e.preventDefault();
             const editId = document.getElementById("editProductId").value;
@@ -1500,22 +1584,18 @@
             }
         });
 
-        function moveProduct(index, dir) {
+        function moveProductInCategory(prodId, dir) {
+            const index = menuData.products.findIndex(p => p.id === prodId);
+            if (index === -1) return;
             const currentProd = menuData.products[index];
-            if (!currentProd) return;
 
-            // Önce kendi kategorisi içindeki bir önceki/sonraki ürünü bulup onunla yer değiştir
+            // Aynı kategorideki bir önceki veya bir sonraki ürünü bul
             let targetIdx = -1;
             for (let i = index + dir; i >= 0 && i < menuData.products.length; i += dir) {
                 if (menuData.products[i].categoryId === currentProd.categoryId) {
                     targetIdx = i;
                     break;
                 }
-            }
-
-            // Eğer aynı kategoride o yönde başka ürün yoksa genel listede bir adım kaydır
-            if (targetIdx === -1) {
-                targetIdx = index + dir;
             }
 
             if (targetIdx < 0 || targetIdx >= menuData.products.length) return;
